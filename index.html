@@ -23,19 +23,20 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;overflow:hidden;overscroll-behavior:none;-webkit-text-size-adjust:100%}
+html{background:var(--ground)}
+html,body{margin:0;height:100%;min-height:100lvh;overflow:hidden;overscroll-behavior:none;-webkit-text-size-adjust:100%}
 body{background:var(--ground);color:var(--wine);font-family:var(--serif);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 button,input{font:inherit;color:inherit}
 
 /* ---------- telas ---------- */
 .screen{
-  position:absolute;inset:0;overflow:hidden;
+  position:fixed;inset:0;overflow:hidden;
   opacity:0;visibility:hidden;
   transition:opacity 0s linear .6s,visibility 0s linear .6s;
 }
 .screen.active{opacity:1;visibility:visible;transition:opacity .6s ease,visibility 0s}
-.bg{display:none;position:absolute;inset:-6%;background-size:cover;background-position:center;filter:blur(26px) brightness(.8);transform:scale(1.08)}
-@media (min-aspect-ratio:5628/10000){.bg{display:block}}
+.bg{display:block;position:absolute;inset:-6%;background-size:cover;background-position:center;filter:blur(26px) brightness(.8);transform:scale(1.08)}
+
 .stage{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   height:100%;aspect-ratio:941/1672;
@@ -75,8 +76,8 @@ button,input{font:inherit;color:inherit}
 .cover.drag{transition:none}
 .sheet{position:absolute;inset:0;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
 .sheet.drag{transition:none}
-.stage{opacity:0;transition:opacity .6s ease}
-.stage.ready{opacity:1}
+.stage#stage{opacity:0;transition:opacity .6s ease}
+.stage#stage.ready{opacity:1}
 .cover.gone{visibility:hidden;transition:none}
 .cover>img{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;user-select:none;-webkit-user-drag:none}
 
