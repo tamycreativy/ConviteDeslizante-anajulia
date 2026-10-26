@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1b1530">
+<meta name="theme-color" content="#101e2b" id="tc">
 <title>Convite Ana Júlia Revela</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
   --wine-deep:#3a0a14;
   --gold:#c9a24b;
   --gold-light:#ecd08a;
-  --ground:#1b1530;
+  --ground:#101e2b;
   --ink:#1a2f58;
   --display:'Cinzel',Georgia,serif;
   --serif:'Cormorant Garamond',Georgia,serif;
@@ -280,7 +280,11 @@ button,input{font:inherit;color:inherit}
   var cover=$('#cover'),pull=$('#pull'),stage=$('#stage');
   var opened=false;
 
+  /* a cor das barras do navegador acompanha a arte da tela atual */
+  var TONES={cover:'#101e2b',info:'#74401c',form:'#50201a'};
+  function tone(c){document.documentElement.style.background=c;document.body.style.background=c;$('#tc').setAttribute('content',c)}
   function go(name){
+    if(name==='main')tone(opened?TONES.info:TONES.cover);else tone(TONES.form);
     Object.keys(screens).forEach(function(k){
       var el=screens[k],on=k===name;
       el.classList.toggle('active',on);
@@ -327,7 +331,7 @@ button,input{font:inherit;color:inherit}
   }
   function finish(){
     if(opened)return;
-    opened=true;dragging=false;
+    opened=true;dragging=false;tone(TONES.info);
     measure();playMusic();
     cover.classList.remove('drag');pull.classList.add('settle');
     pull.style.top=(Y_BOTTOM-TRAVEL*100)+'%';
@@ -344,7 +348,7 @@ button,input{font:inherit;color:inherit}
   /* voltar para a capa: fecha a capa de novo e a música para */
   function reopenCover(){
     if(!opened)return;
-    opened=false;s=0;measure();
+    opened=false;s=0;measure();tone(TONES.cover);
     $('#btn-cover').classList.remove('show');
     stopMusic();
     cover.classList.remove('gone');
