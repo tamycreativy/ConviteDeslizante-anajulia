@@ -48,7 +48,7 @@ button,input{font:inherit;color:inherit}
 /* em celulares estreitos o convite é cortado nas laterais; aqui a fenda fica na direita,
    então o corte vai quase todo para a esquerda e o puxador continua inteiro na tela */
 @media (max-aspect-ratio:5628/10000){
-  #main .stage{left:auto;right:-1.97dvh;transform:translate(0,-50%)}
+  #main .stage{left:auto;right:calc(-1 * min(1.97dvh, max(0px, 56.28dvh - 100vw)));transform:translate(0,-50%)}
 }
 .hot{
   position:absolute;left:var(--x);top:var(--y);width:28.5%;aspect-ratio:1;
